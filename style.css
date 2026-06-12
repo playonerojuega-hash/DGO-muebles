@@ -1,0 +1,303 @@
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO
+   ========================================================================== */
+:root {
+    --color-principal: #1a252f;      /* Azul noche oscuro corporativo */
+    --color-acento: #b37d4e;         /* Tono madera elegante */
+    --color-fondo: #fcfcfd;          /* Fondo base limpio */
+    --color-texto: #333333;
+    --color-texto-suave: #777777;
+    --sombra-premium: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   2. DISTRIBUCIÓN BASE Y LATERALES TEMÁTICOS (FONDO)
+   ========================================================================== */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Franja Temática Izquierda (Textura de madera) */
+body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 12%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), 
+                      linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7));
+    opacity: 0.2;
+    pointer-events: none;
+    border-right: 1px solid rgba(26, 37, 47, 0.05);
+}
+
+/* Franja Temática Derecha (Textura de madera) */
+body::after {
+    content: "";
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 12%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), 
+                      linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7));
+    opacity: 0.2;
+    pointer-events: none;
+    border-left: 1px solid rgba(26, 37, 47, 0.05);
+}
+
+/* Ocultar laterales en pantallas pequeñas para que no se amontone */
+@media (max-width: 1100px) {
+    body::before, body::after { width: 5%; }
+}
+@media (max-width: 768px) {
+    body::before, body::after { display: none; }
+}
+
+/* ==========================================================================
+   3. CONTENEDOR DEL MENÚ DE INICIO
+   ========================================================================== */
+.menu-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 40px 20px;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* Área del Encabezado */
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/* Caja de Control del Logo Imagen */
+.logo-container {
+    max-width: 520px; /* Ancho idóneo para que tu logo rectangular se lea nítido */
+    margin: 0 auto;
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Grid de las dos tarjetas principales */
+.opciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* Tarjetas */
+.tarjeta-opcion {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: var(--sombra-premium);
+    border: 1px solid #f0f0f0;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tarjeta-opcion:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-principal);
+    box-shadow: 0 15px 35px rgba(26, 37, 47, 0.06);
+}
+
+.tarjeta-opcion h3 {
+    margin: 0 0 15px 0;
+    color: var(--color-principal);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.tarjeta-opcion p {
+    color: var(--color-texto-suave);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 35px 0;
+    height: 45px;
+}
+
+/* ==========================================================================
+   4. COMPONENTE: BOTONES INTERACTIVOS (CAMBIO BLANCO A NEGRO)
+   ========================================================================== */
+.btn-menu {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--color-principal) !important;
+    border-radius: 2px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #ffffff !important;
+    color: var(--color-principal) !important;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* Efecto Hover Simétrico */
+.tarjeta-opcion:hover .btn-menu {
+    background-color: var(--color-principal) !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   5. SECCIÓN: CONFIGURACIÓN DE FORMULARIOS
+   ========================================================================== */
+.form-container {
+    background-color: #ffffff;
+    padding: 45px;
+    border-radius: 4px;
+    box-shadow: var(--sombra-premium);
+    border: 1px solid #f0f0f0;
+    max-width: 540px;
+    width: 100%;
+    z-index: 10;
+    box-sizing: border-box;
+    animation: fadeIn 0.4s ease;
+}
+
+.form-container h2 {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--color-principal);
+    margin: 0 0 20px 0;
+}
+
+.btn-volver {
+    background: none;
+    border: none;
+    color: var(--color-acento);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 25px;
+    padding: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-principal);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input[type="text"], input[type="tel"], select, textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 22px;
+    border: 1px solid #e2e2e2;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fafafa;
+    transition: all 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(179, 125, 78, 0.08);
+}
+
+#btnEnviar, #btnConsultar {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 2px;
+    font-size: 13px;
+    cursor: pointer;
+    background-color: var(--color-principal);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+#btnEnviar:hover, #btnConsultar:hover {
+    background-color: var(--color-acento);
+}
+
+/* ==========================================================================
+   6. CAJAS DE RESPUESTA Y ALERTAS
+   ========================================================================== */
+.resultado-caja {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 2px;
+    border-top: 3px solid var(--color-acento);
+}
+
+.resultado-caja h4 {
+    margin: 0 0 12px 0;
+    font-size: 17px;
+    color: var(--color-principal);
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+}
+
+.status-pendiente { background-color: #d4a373; }
+.status-en-fabricación { background-color: #4a7c59; }
+.status-listo-para-entrega { background-color: #283618; }
+.status-error { background-color: #bc4749; }
+
+.oculto { display: none !important; }
+
+#mensajeExito {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
